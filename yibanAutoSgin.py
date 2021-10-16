@@ -3,12 +3,27 @@ import requests
 import json
 import re
 import time
-from Crypto.Cipher import PKCS1_v1_5
-from Crypto.PublicKey import RSA
 import base64
 import smtplib
 from email.mime.text import MIMEText
 from email.utils import formataddr
+import os
+import sys
+
+try:
+    import requests
+except ModuleNotFoundError:
+    print("缺少requests依赖,安装依赖")
+    os.system("pip3 install requests -i https://pypi.tuna.tsinghua.edu.cn/simple")
+    os.execl(sys.executable, 'python3', __file__, *sys.argv)
+
+try:
+    from Crypto.Cipher import PKCS1_v1_5
+    from Crypto.PublicKey import RSA
+except ModuleNotFoundError:
+    print("缺少pycryptodome依赖,安装依赖")
+    os.system("pip3 install pycryptodome -i https://pypi.tuna.tsinghua.edu.cn/simple")
+    os.execl(sys.executable, 'python3', __file__, *sys.argv)
 
 def encryptPassword(pwd):
     # 密码加密
@@ -31,6 +46,7 @@ def encryptPassword(pwd):
         return cipher_text.decode("utf-8")
 
 def sendEmail():
+        #邮箱服务器地址
         host_server = 'smtp.office365.com'
         #发送者邮件地址
         from_email = '#####'
