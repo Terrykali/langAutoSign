@@ -159,7 +159,7 @@ class yiban:
         return status
 
 def main():
-    # 修改下方的手机号和 密码
+    # 修改下方的手机号和密码
     a = yiban("手机号", "密码")
     status = a.setall()
     print(status)
