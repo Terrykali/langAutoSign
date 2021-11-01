@@ -27,7 +27,7 @@ jobs:
       - name: 'Install requirements'
         run: |
             python -m pip install --upgrade pip
-            pip install -r ./langAutoSign/requirements.txt
+            pip install -r requirements.txt
 
       - name: 'Sign'
         env:
@@ -36,4 +36,4 @@ jobs:
           USER_LOCATIN: ${{ secrets.USER_LOCATIN }}
           USER_COORDINATES: ${{ secrets.USER_COORDINATES }}
         run: 
-          python ./langAutoSign/yibanAutoSgin.py
+          python yibanAutoSgin.py
