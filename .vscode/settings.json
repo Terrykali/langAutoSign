@@ -1,0 +1,6 @@
+{
+    "redhat.telemetry.enabled": false,
+    "yaml.schemas": {
+        "http://json.schemastore.org/swagger-2.0": ["*swagger.yaml", "*swagger.yml"],
+    }
+}
