@@ -87,7 +87,9 @@ class yiban:
         self.session = requests.session()
         # 从https://lbs.amap.com/tools/picker 寻找宿舍经纬度
         # https://apecodewx.gitee.io/sixuetang/how 此处有获取方法
-        self.night_sgin = '{"Reason":"","AttachmentFileName":"","LngLat":"118.365011,24.445686","Address":"福建省泉州市金门县电动车充电站(金湖镇公所)"}'
+        USER_LOCATIN = os.environ['USER_LOCATIN']
+        USER_COORDINATES = os.environ['USER_COORDINATES']
+        self.night_sgin = '{"Reason":"","AttachmentFileName":"","LngLat":"%s","Address":"%s"}' %(USER_COORDINATES,USER_LOCATIN)
 
 
 
@@ -152,15 +154,22 @@ class yiban:
         self.login()
         self.auth()
         time.sleep(3)
-        self.sginPostion()
-        time.sleep(2)
-        status = self.nightAttendance(self.night_sgin)
-        sendEmail()
-        return status
+        restate =  self.sginPostion()
+        thisState = restate['data']['Msg']
+        print(thisState)
+        if thisState == "未达签到时段" or thisState == "已签到" :
+            return "未达签到时段或已签到"
+        else:
+            time.sleep(2)
+            status = self.nightAttendance(self.night_sgin)
+            sendEmail()
+            return status
 
 def main():
     # 修改下方的手机号和密码
-    a = yiban("手机号", "密码")
+    USER_ACCOUNT = os.environ['USER_ACCOUNT']
+    USER_PASSWORD = os.environ['USER_PASSWORD']
+    a = yiban(USER_ACCOUNT, USER_PASSWORD)
     status = a.setall()
     print(status)
     time.sleep(1)
