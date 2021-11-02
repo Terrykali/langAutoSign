@@ -65,7 +65,6 @@ class yiban:
         self.night_sgin = '{"Reason":"","AttachmentFileName":"","LngLat":"%s","Address":"%s"}' %(USER_COORDINATES,USER_LOCATIN)
 
 
-
     def login(self):
         params = {
             "mobile": self.mobile,
