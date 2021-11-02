@@ -156,7 +156,7 @@ class yiban:
         time.sleep(3)
         restate =  self.sginPostion()
         thisState = restate['data']['Msg']
-        print(thisState)
+#        print(thisState)
         if thisState == "未达签到时段" or thisState == "已签到" :
             return "未达签到时段或已签到"
         else:
