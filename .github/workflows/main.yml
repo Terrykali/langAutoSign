@@ -47,16 +47,3 @@ jobs:
           USER_COORDINATES: ${{ secrets.USER_COORDINATES }}
         run: 
           python yibanAutoSgin.py
-      
-      - name: 'Send mail'
-        uses: dawidd6/action-send-mail@master
-        with:
-          server_address: smtp.office365.com
-          server_port: 587
-          username: ${{ secrets.MAIL_USERNAME }}
-          password: ${{ secrets.MAIL_PASSWORD }}
-          subject: yiban Report
-          body: "Sign Success!"
-          to: tang3.1415926@outlook.com
-          from: GitHub Actions
-          content_type: text/plain
