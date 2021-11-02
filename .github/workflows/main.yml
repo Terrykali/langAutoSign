@@ -56,7 +56,7 @@ jobs:
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
           subject: yiban Report
-          body: file://email.txt
+          body: "Sign Success!"
           to: tang3.1415926@outlook.com
           from: GitHub Actions
           content_type: text/plain

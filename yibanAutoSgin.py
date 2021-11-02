@@ -122,11 +122,6 @@ class yiban:
         response = self.request("https://api.uyiban.com/nightAttendance/student/index/signIn?CSRF=" + self.CSRF,
                                 method="post", params=params, cookies=self.COOKIES)
         return response
-
-    def saveFile(message):
-    # 保存email内容
-        with open("email.txt", 'a+', encoding="utf-8") as email:
-            email.write(message+'\n')
         
     def setall(self):
         self.login()
@@ -140,7 +135,6 @@ class yiban:
         else:
             time.sleep(2)
             status = self.nightAttendance(self.night_sgin)
-            self.saveFile("签到成功！")
             return status
 
 def main():
