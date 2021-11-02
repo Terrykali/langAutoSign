@@ -45,33 +45,6 @@ def encryptPassword(pwd):
         cipher_text = base64.b64encode(cipher.encrypt(bytes(pwd, encoding="utf8")))
         return cipher_text.decode("utf-8")
 
-def sendEmail():
-        #邮箱服务器地址
-        host_server = 'smtp.office365.com'
-        #发送者邮件地址
-        from_email = '#####'
-        #接收者的邮件地址
-        to_email = '####'
-        #邮件密码
-        password = '#####'
-        #获取当前的时间
-        now_time = time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(time.time()))
-        text_msg = now_time + '签到成功了！'
-        msg = MIMEText(text_msg, 'plain', 'utf-8')
-        msg["Accept-Language"] = "zh-CN"
-        msg["Accept-Charset"] = "ISO-8859-1,utf-8"
-        # 发件人邮箱昵称、发件人邮箱账号
-        msg['From'] = formataddr(["发件人昵称", from_email])
-         # 收件人邮箱昵称、收件人邮箱账号
-        msg['To'] = formataddr(["收件人昵称", to_email])
-        msg['Subject'] = "邮件主题"
-        smtp_server = smtplib.SMTP(host_server,587)
-        smtp_server.ehlo()
-        smtp_server.starttls()
-        smtp_server.login(from_email,password)
-        smtp_server.sendmail(from_email,to_email,msg.as_string())
-        smtp_server.quit()
-        print(now_time + " 邮件发送成功")
 
 
 
@@ -149,6 +122,11 @@ class yiban:
         response = self.request("https://api.uyiban.com/nightAttendance/student/index/signIn?CSRF=" + self.CSRF,
                                 method="post", params=params, cookies=self.COOKIES)
         return response
+
+    def saveFile(message):
+    # 保存email内容
+        with open("email.txt", 'a+', encoding="utf-8") as email:
+            email.write(message+'\n')
         
     def setall(self):
         self.login()
@@ -158,11 +136,11 @@ class yiban:
         thisState = restate['data']['Msg']
 #        print(thisState)
         if thisState == "未达签到时段" or thisState == "已签到" :
-            return "未达签到时段或已签到"
+            return thisState
         else:
             time.sleep(2)
             status = self.nightAttendance(self.night_sgin)
-#            sendEmail()
+            self.saveFile("签到成功！")
             return status
 
 def main():

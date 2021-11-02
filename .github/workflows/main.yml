@@ -8,6 +8,8 @@ on:
     types: started
   schedule:
     - cron: 40/5 12 * * *
+
+  workflow_dispatch:
 # on:
 #   # Triggers the workflow on push or pull request events but only for the main branch
 #   push:
@@ -16,7 +18,6 @@ on:
 #     branches: [ main ]
 
   # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
 
 jobs:
   build:
@@ -46,3 +47,16 @@ jobs:
           USER_COORDINATES: ${{ secrets.USER_COORDINATES }}
         run: 
           python yibanAutoSgin.py
+      
+      - name: 'Send mail'
+        uses: dawidd6/action-send-mail@master
+        with:
+          server_address: smtp.office365.com
+          server_port: 587
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: yiban Report
+          body: file://email.txt
+          to: tang3.1415926@outlook.com
+          from: GitHub Actions
+          content_type: text/plain
