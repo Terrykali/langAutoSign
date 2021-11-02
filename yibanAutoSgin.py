@@ -162,7 +162,7 @@ class yiban:
         else:
             time.sleep(2)
             status = self.nightAttendance(self.night_sgin)
-            sendEmail()
+#            sendEmail()
             return status
 
 def main():
