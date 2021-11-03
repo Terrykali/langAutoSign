@@ -6,7 +6,7 @@ name: AutoSign
 on:
   workflow_dispatch:
   schedule:
-    - cron: '03 13 * * *'
+    - cron: '40/5 12 * * *'
 
 
 # on:
