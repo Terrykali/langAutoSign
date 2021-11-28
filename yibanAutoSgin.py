@@ -51,7 +51,7 @@ def encryptPassword(pwd):
 class yiban:
     CSRF = "38717fe231a62f75253f9529f9e778d5"
     COOKIES = {"csrf_token": CSRF}
-    HEADERS = {"Origin": "'https://m.yiban.cn", 'AppVersion': '5.0.1', "User-Agent": "YiBan/5.0.1"}
+    HEADERS = {"Origin": "'https://m.yiban.cn", 'AppVersion': '5.0.4', "User-Agent": "Mozilla/5.0 (Linux; Android 11; MEIZU 18 Build/RKQ1.210715.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/93.0.4577.82 Mobile Safari/537.36"}
 
     
     def __init__(self, mobile, password):
