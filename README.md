@@ -7,4 +7,5 @@
 > 例如：
 
 > 下面这个命令表示在每天的8:30分会执行任务
+
 > 30 8 * * * /usr/bin/python3 文件路径/xxxxx.py >> /log/log.txt
