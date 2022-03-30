@@ -53,7 +53,7 @@ class temperature:
 
     task_once = {
     "a1b7d2e31196f36a1c34c68debaa7bb0": str(round(random.uniform(36.1, 36.9), 1)),
-    "515d5649e65817f48df9fb5243aacb62": "否",
+    "f6d71bcd48b01e5abe43d95c7a1d7c8b": "否",
     }
     timePeriod =  [
         time.strftime("%Y-%m-%d 6:00:00", time.localtime(int(time.time()))),
@@ -208,6 +208,9 @@ class temperature:
                             {"label": "发布人", "value": detail["data"]["PubPersonName"]}
                         ]
                     }
+                    #首次运行需要使用此方法获取表单数据
+                    #self.getFormapi()
+                    # 获取数据后，将需要提交的数据填充到task_once构造填写数据
                     sbmit_result = self.submitApply(self.task_once,extend)
                     if sbmit_result["code"] == 0:
                         result = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(int(time.time()))) + " 表单提交成功\n"
